@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:eiei/views/home_page.dart';
+//import 'package:eiei/views/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -195,19 +195,42 @@ Widget Button() {
       backgroundColor: Color.fromARGB(255, 230, 230, 230),
     ),
     child: Text("ตรวจสอบแบตเตอรี่",
-        style: TextStyle(fontSize: 16, color: Colors.black)),
+        style: TextStyle(fontSize: 18, color: Colors.black)),
   );
 }
 
-Widget Button2() {
-  return ElevatedButton(
-    onPressed: () {},
-    style: ElevatedButton.styleFrom(
-      minimumSize: Size(350, 60),
-      elevation: 5,
-      backgroundColor: Colors.red,
-    ),
-    child: Text("เปิด/ปิด ไม้เท้า",
-        style: TextStyle(fontSize: 16, color: Colors.black)),
-  );
+class Button2 extends StatefulWidget {
+  const Button2({Key? key}) : super(key: key);
+
+  @override
+  _Button2State createState() => _Button2State();
 }
+
+class _Button2State extends State<Button2> {
+  bool isButtonPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        setState(() {
+          // เปลี่ยนสถานะเมื่อปุ่มถูกกด
+          isButtonPressed = !isButtonPressed;
+        });
+      },
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size(350, 60),
+        elevation: 5,
+        // ใช้เงื่อนไขในการตรวจสอบสถานะเพื่อเลือกสี
+        backgroundColor: isButtonPressed ? Colors.lightGreen : Colors.red,
+      ),
+      child: const Text(
+        "เปิด/ปิด ไม้เท้า",
+        style: TextStyle(fontSize: 18, color: Colors.black),
+      ),
+    );
+  }
+}
+
+
+

@@ -8,7 +8,7 @@ class BluetoothPage extends StatefulWidget {
 }
 
 class _BluetoothPageState extends State<BluetoothPage> {
-  final BluetoothController controller = Get.put(BluetoothController());
+  final BluetoothController controller = Get.find<BluetoothController>(); // Find the BluetoothController instance
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,8 @@ class _BluetoothPageState extends State<BluetoothPage> {
           itemCount: controller.devices.length,
           itemBuilder: (context, index) {
             return ListTile(
-              title: Text(controller.devices[index].name),
-              subtitle: Text(controller.devices[index].id.toString()),
+              title: Text(controller.devices[index].platformName),
+              subtitle: Text(controller.devices[index].remoteId.toString()),
               onTap: () {
                 controller.connectToDevice(controller.devices[index]);
               },
@@ -43,3 +43,4 @@ class _BluetoothPageState extends State<BluetoothPage> {
     );
   }
 }
+
