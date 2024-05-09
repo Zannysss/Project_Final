@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:eiei/controllers/bluetooth_controller.dart';
 
-class BluetoothPage extends StatelessWidget {
+class BluetoothPage extends StatefulWidget {
+  @override
+  _BluetoothPageState createState() => _BluetoothPageState();
+}
+
+class _BluetoothPageState extends State<BluetoothPage> {
   final BluetoothController controller = Get.put(BluetoothController());
 
   @override
@@ -27,9 +32,13 @@ class BluetoothPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          controller.startScan();
+          if (controller.isScanning.value) {
+            controller.stopScan();
+          } else {
+            controller.startScan();
+          }
         },
-        child: Icon(Icons.bluetooth),
+        child: Obx(() => Icon(controller.isScanning.value ? Icons.stop : Icons.bluetooth)),
       ),
     );
   }

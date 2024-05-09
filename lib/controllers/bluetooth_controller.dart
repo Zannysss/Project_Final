@@ -5,13 +5,13 @@ class BluetoothController extends GetxController {
   late FlutterBluePlus flutterBlue;
   RxList<ScanResult> scanResults = RxList<ScanResult>();
   RxList<BluetoothDevice> devices = RxList<BluetoothDevice>();
+  var isScanning = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     flutterBlue = FlutterBluePlus();
   }
-  // 123123123125555
   void startScan() {
     try {
       FlutterBluePlus.startScan(timeout: const Duration(seconds: 5));
