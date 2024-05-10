@@ -29,160 +29,96 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("  "),
-          backgroundColor: Colors.green, // กำหนดสีของ AppBar เป็นสีเขียว
+      appBar: AppBar(
+        title: const Text("การแจ้งเตือน"),
+        backgroundColor: Colors.blue,
+        centerTitle: true, // กำหนดสีของ AppBar เป็นสีเขียว
+      ),
+      body: Container(
+        padding: EdgeInsets.all(1.0),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.blue.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                height: 480,
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10.0),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "การแจ้งเตือน",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      height: 100,
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "โปรดระวังสิ่งกีดขวางในระดับศีรษะ ระยะ 300 cm",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      height: 100,
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "แบตเตอรี่เหลือ 20%",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      height: 100,
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "การแจ้งเตือนที่ 3",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      height: 100,
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "การแจ้งเตือนที่ 4",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+        child: ListView(
+          children: [
+            Container(
+              decoration: BoxDecoration(),
+              padding: const EdgeInsets.all(2.0),
+              child: Column(
+                children: [
+                  NotificationCard(
+                    text: " การแจ้งเตือน ",
+                  ),
+                  const SizedBox(height: 2),
+                  NotificationCard(text: " "),
+                  const SizedBox(height: 2),
+                  NotificationCard(text: " "),
+                  const SizedBox(height: 2),
+                  NotificationCard(text: " "),
+                  const SizedBox(height: 2),
+                  NotificationCard(text: " "),
+                ],
               ),
-              const SizedBox(
-                height: 5,
+            ),
+            const SizedBox(height: 2),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.blue,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                height: 200,
-                width: 400,
-                padding: EdgeInsets.all(15.0),
-                child: Column(
-                  children: <Widget>[
-                    const Text(
-                      "ตรวจสอบแบตเตอรี่ และ เปิด/ปิดไม้เท้า",
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Button(),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Button2()
-                  ],
-                ),
-              )
-            ],
+              height: 200,
+              padding: EdgeInsets.all(15.0),
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Button(),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Button2()
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class NotificationCard extends StatelessWidget {
+  final String text;
+
+  const NotificationCard({Key? key, required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      height: 90,
+      padding: const EdgeInsets.all(10),
+      child: Center(
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.black,
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
@@ -190,7 +126,7 @@ Widget Button() {
   return ElevatedButton(
     onPressed: () {},
     style: ElevatedButton.styleFrom(
-      minimumSize: Size(350, 60),
+      minimumSize: Size(330, 70),
       elevation: 5,
       backgroundColor: Color.fromARGB(255, 230, 230, 230),
     ),
@@ -219,7 +155,7 @@ class _Button2State extends State<Button2> {
         });
       },
       style: ElevatedButton.styleFrom(
-        minimumSize: const Size(350, 60),
+        minimumSize: const Size(330, 70),
         elevation: 5,
         // ใช้เงื่อนไขในการตรวจสอบสถานะเพื่อเลือกสี
         backgroundColor: isButtonPressed ? Colors.lightGreen : Colors.red,
@@ -231,6 +167,3 @@ class _Button2State extends State<Button2> {
     );
   }
 }
-
-
-
